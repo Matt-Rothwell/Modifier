@@ -16,7 +16,7 @@ import java.util.Calendar;
 public class Modifier {
 
     private File currentFile;
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 
     public Modifier(){
         handleGUI();
@@ -147,7 +147,7 @@ public class Modifier {
 
         // Label to display date format.
         JPanel labelPanel = new JPanel();
-        JLabel dateFormatMessage = new JLabel("Date Format: dd/mm/yyyy hh:mm:ss");
+        JLabel dateFormatMessage = new JLabel("Date Format: dd/mm/yyyy hh:mm:ss A");
         labelPanel.add(dateFormatMessage);
 
         // Apply button panel and logic
@@ -155,7 +155,7 @@ public class Modifier {
         JButton applyButton = new JButton("Apply");
         bottomPanel.add(applyButton);
         applyButton.addActionListener(e -> {
-            Boolean success = updateDates(createdDate.getText(), modifiedDate.getText());
+            Boolean success = updateDates(createdDate.getText().toUpperCase(), modifiedDate.getText().toUpperCase());
             if (success == null){
                 JOptionPane.showMessageDialog(frame, "No file selected.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
